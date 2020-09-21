@@ -1,4 +1,20 @@
+<head>
+
+</head>
+<body>
+    <button id="rockBtn">Rock</button>
+    <button id="scissorsBtn">Scissors</button>
+    <button id="paperBtn">Paper</button>
+
+
+    <div id="result" />
+
+    <div id="score" />
+
+
+</body>
 <script>
+
     function computerPlay(){
         number = Math.floor(Math.random() * 3)
 
@@ -16,52 +32,87 @@
     }
 
 
-    numRounds = prompt("Please enter the number of rounds")
 
-    function playRound( computerSelection){
-        playerSelection = prompt("Please enter rock, paper or scissors")
+    function playRound(playerSelection, computerSelection){
 
         if(playerSelection == computerSelection){
-            statement = "Its a tie! you both chose " + playerSelection
+            return ["Its a tie! you both chose " + playerSelection, 0]
         }
 
         else if(playerSelection == 'rock'){
             if (computerSelection == 'paper'){
-                statement = "You lose! The computer chose " + computerSelection
+                return ["You lose! The computer chose " + computerSelection, 2]
             }
             else{
-                statement = "You win! The computer chose " + computerSelection
+                return ["You win! The computer chose " + computerSelection, 1]
             }
         }
 
         else if(playerSelection == 'paper'){
             if (computerSelection == 'scissors'){
-                statement = "You lose! The computer chose " + computerSelection
+                return ["You lose! The computer chose " + computerSelection, 2]
             }
             else{
-                statement = "You win! The computer chose " + computerSelection
+                return ["You win! The computer chose " + computerSelection, 1]
             }
         }
 
         else if(playerSelection == 'scissors'){
             if (computerSelection == 'rock'){
-                statement = "You lose! The computer chose " + computerSelection
+                return ["You lose! The computer chose " + computerSelection, 2]
             }
             else{
-                statement = "You win! The computer chose " + computerSelection
+                return ["You win! The computer chose " + computerSelection, 1]
             }
         }
 
-        console.log(statement)
     }
 
-    function game(playRound, numOfRound,computerSelection){
-        for(x = 0; x<numOfRound; x++){
-            playRound(computerSelection)
-        }
-    }
+    let userScore = 0;
+    let compScore = 0;
 
-    game(playRound, numRounds, computerPlay())
+    const rockButton = document.querySelector('#rockBtn')
+    const scissorsButton = document.querySelector('#scissorsBtn')
+    const paperButton = document.querySelector('#paperBtn')
+
+
+    const containerResult = document.querySelector('#result')
+    const h3Result = document.createElement('h3')
+
+    const containerScore = document.querySelector('#score')
+    const userScoreH4 = document.createElement('h4')
+    const compScoreH4 = document.createElement('h4')
+
+
+    rockButton.addEventListener('click', () => {
+        value = playRound('rock', computerPlay())
+        h3Result.textContent = value[0] 
+
+        value[1] == 1 ? userScore += 1 : (value[1] == 2 ? compScore += 1 : null)
+    });
+
+    scissorsButton.addEventListener('click', () => {
+        value = playRound('scissors', computerPlay())
+        h3Result.textContent = value[0]    
+
+        value[1] == 1 ? userScore += 1 : (value[1] == 2 ? compScore += 1 : null)
+    });
+
+    paperButton.addEventListener('click', () => {
+        value = playRound('paper', computerPlay())
+        h3Result.textContent = value[0]  
+
+        value[1] == 1 ? userScore += 1 : (value[1] == 2 ? compScore += 1 : null)
+    });
+
+    containerResult.appendChild(h3Result)
+
+    userScoreH4.textContent = "User Score: " + userScore; 
+    compScoreH4.textContent = "Computer Score: " + compScore;
+
+    containerScore.appendChild(userScoreH4)
+    containerScore.appendChild(compScoreH4)
+
 
 
 </script>

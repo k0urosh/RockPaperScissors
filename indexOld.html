@@ -1,0 +1,67 @@
+<script>
+    function computerPlay(){
+        number = Math.floor(Math.random() * 3)
+
+        if (number == 0){
+            selection = "rock"
+        }
+        else if (number == 1){
+            selection = "paper"
+        }
+        else if (number == 2){
+            selection = "scissors"
+        }
+
+        return selection
+    }
+
+
+    numRounds = prompt("Please enter the number of rounds")
+
+    function playRound( computerSelection){
+        playerSelection = prompt("Please enter rock, paper or scissors")
+
+        if(playerSelection == computerSelection){
+            return "Its a tie! you both chose " + playerSelection
+        }
+
+        else if(playerSelection == 'rock'){
+            if (computerSelection == 'paper'){
+                return "You lose! The computer chose " + computerSelection
+            }
+            else{
+                return "You win! The computer chose " + computerSelection
+            }
+        }
+
+        else if(playerSelection == 'paper'){
+            if (computerSelection == 'scissors'){
+                return "You lose! The computer chose " + computerSelection
+            }
+            else{
+                return "You win! The computer chose " + computerSelection
+            }
+        }
+
+        else if(playerSelection == 'scissors'){
+            if (computerSelection == 'rock'){
+                return "You lose! The computer chose " + computerSelection
+            }
+            else{
+                return "You win! The computer chose " + computerSelection
+            }
+        }
+
+        console.log(statement)
+    }
+
+    function game(playRound, numOfRound,computerSelection){
+        for(x = 0; x<numOfRound; x++){
+            playRound(computerSelection)
+        }
+    }
+
+    game(playRound, numRounds, computerPlay())
+
+
+</script>
